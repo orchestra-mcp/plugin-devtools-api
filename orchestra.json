@@ -1,0 +1,23 @@
+{
+    "name": "orchestra-mcp/plugin-devtools-api",
+    "description": "API Explorer — HTTP/WebSocket testing, collections, OpenAPI generation",
+    "type": "tools",
+    "license": "MIT",
+    "homepage": "https://orchestra-mcp.dev",
+    "support": {
+        "issues": "https://github.com/orchestra-mcp/plugin-devtools-api/issues",
+        "source": "https://github.com/orchestra-mcp/plugin-devtools-api"
+    },
+    "require": {
+        "orchestra-mcp/gen-go": "^0.1.0",
+        "orchestra-mcp/sdk-go": "^0.1.0"
+    },
+    "bin": "devtools-api",
+    "extra": {
+        "plugin-id": "devtools.api",
+        "provides": ["tools"],
+        "branch-alias": {
+            "dev-master": "0.1.x-dev"
+        }
+    }
+}
