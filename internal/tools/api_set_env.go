@@ -28,12 +28,15 @@ func ApiSetEnvSchema() *structpb.Struct {
 // ApiSetEnv returns a handler that creates or updates an environment.
 func ApiSetEnv(store *storage.DataStorage) ToolHandler {
 	return func(ctx context.Context, req *pluginv1.ToolRequest) (*pluginv1.ToolResponse, error) {
-		if err := helpers.ValidateRequired(req.Arguments, "name", "variables"); err != nil {
+		if err := helpers.ValidateRequired(req.Arguments, "name"); err != nil {
 			return helpers.ErrorResult("validation_error", err.Error()), nil
 		}
 
 		name := helpers.GetString(req.Arguments, "name")
 		variables := helpers.GetStringMap(req.Arguments, "variables")
+		if variables == nil {
+			return helpers.ErrorResult("validation_error", "missing required fields: variables"), nil
+		}
 		project := storage.ResolveProject(helpers.GetString(req.Arguments, "project_id"))
 		now := helpers.NowISO()
 
